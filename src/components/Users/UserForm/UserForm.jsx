@@ -4,8 +4,8 @@ import classes from "./UserForm.module.css"
 import Card from "../../Containers/Card/Card";
 
 function UserForm(props) {
-    const {onNewUserAdded}= props;
-    const [state, setState] = useState({userName: "", age: 0, id:0})
+    const {onNewUserAdded} = props;
+    const [state, setState] = useState({userName: "", age: 0, id: 0})
     const handleOnChange = (event) => {
         const {value, name} = event.target;
         setState((previousState) => ({...previousState, [name]: value}))
@@ -13,12 +13,22 @@ function UserForm(props) {
     const handleOnUserAdded = (event) => {
         if (event && event.preventDefault) {
             event.preventDefault();
-            if ((state.userName.length > 0) && (state.age>=18 && state.age<=80)) {
-                state.id= Math.random().toString()
+            const currentAge = state.age;
+            const currentUserName = state.userName.trim();
+            if ((currentUserName.length > 0) && (currentAge >= 18 && currentAge <= 80)) {
+                state.id = Math.random().toString()
                 onNewUserAdded(state)
-                setState({userName: "", age: 0, id:0})
+                setState({userName: "", age: 0, id: 0})
             } else {
-                console.log("Failed Submission!  Input validation failed")
+                if (currentAge < 18) {
+                    console.log("Age must be greater than or equal to 18")
+                }  else if (currentAge > 80) {
+                    console.log("Age must be less than or equal to 80")
+                }else if (currentUserName.length === 0) {
+                    console.log("Invalid UserName")
+                } else {
+                    console.log("Failed Submission!  Input validation failed")
+                }
             }
         } else {
             console.log("Add user event failed")
@@ -50,7 +60,7 @@ function UserForm(props) {
                                placeholder="Enter your age"
                                onChange={handleOnChange}/>
                     </div>
-                    <Button type={"submit"} onClick={handleOnUserAdded}>Add User</Button>
+                    <Button type={"submit"} onClick={handleOnUserAdded} className="btn-blue">Add User</Button>
                 </form>
             </div>
         </Card>
