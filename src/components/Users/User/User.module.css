@@ -1,0 +1,15 @@
+.user {
+    padding: 1rem 1.5rem;
+    text-align: left;
+}
+
+.main-heading{
+    color: #023E8A;
+}
+
+.secondary-heading{
+    color: #0096C7;
+}
+.user:not(:last-of-type){
+    margin-bottom: 2rem;
+}

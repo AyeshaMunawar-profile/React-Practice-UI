@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 0rem;
+}
+.app{
+  margin: 0 10%;
+}

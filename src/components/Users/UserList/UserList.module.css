@@ -1,0 +1,13 @@
+.user-list {
+    padding: 5rem 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.user-list__error{
+    color: #CAF0F8;
+    margin: 2rem 0rem;
+}
