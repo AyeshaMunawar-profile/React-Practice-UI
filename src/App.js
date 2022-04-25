@@ -4,10 +4,9 @@ import UserForm from "./components/Users/UserForm/UserForm";
 import UserList from "./components/Users/UserList/UserList";
 
 function App() {
-    const [usersList, setUsersList]= useState([]);
-    const handleNewUserAdded=(userInfo)=>{
-        const newUserList=[...usersList, userInfo];
-        setUsersList(newUserList)
+    const [usersList, setUsersList] = useState([]);
+    const handleNewUserAdded = (userInfo) => {
+        setUsersList((previousList) => ([...previousList, userInfo]))
     }
     return (
         <div className="app">
