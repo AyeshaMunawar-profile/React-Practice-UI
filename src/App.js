@@ -23,7 +23,8 @@ function App() {
     }
     return (
         <div className="app">
-            <ErrorBoundary>
+            <ErrorBoundary showAlert={showOverlay}
+                           setAlertContent={setOverlayMessageContent}>
                 <UserForm onNewUserAdded={handleNewUserAdded} showAlert={showOverlay}
                           setAlertContent={setOverlayMessageContent}/>
                 <UserList userList={usersList}/>
