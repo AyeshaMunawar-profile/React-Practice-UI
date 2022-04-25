@@ -7,7 +7,10 @@ function UserForm(props) {
     const {onNewUserAdded} = props;
     const [state, setState] = useState({userName: "", age: 0, id: 0})
     const handleOnChange = (event) => {
-        const {value, name} = event.target;
+        let {value, name} = event.target;
+        if (name === 'age') {
+            value = Number(value).toString()
+        }
         setState((previousState) => ({...previousState, [name]: value}))
     }
     const handleOnUserAdded = (event) => {
@@ -16,15 +19,15 @@ function UserForm(props) {
             const currentAge = state.age;
             const currentUserName = state.userName.trim();
             if ((currentUserName.length > 0) && (currentAge >= 18 && currentAge <= 80)) {
-                state.id = "user-"+Math.random().toString()
+                state.id = "user-" + Math.random().toString()
                 onNewUserAdded(state)
                 setState({userName: "", age: 0, id: 0})
             } else {
                 if (currentAge < 18) {
                     console.log("Age must be greater than or equal to 18")
-                }  else if (currentAge > 80) {
+                } else if (currentAge > 80) {
                     console.log("Age must be less than or equal to 80")
-                }else if (currentUserName.length === 0) {
+                } else if (currentUserName.length === 0) {
                     console.log("Invalid UserName")
                 } else {
                     console.log("Failed Submission!  Input validation failed")
