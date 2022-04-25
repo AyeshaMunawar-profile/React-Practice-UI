@@ -1,0 +1,36 @@
+.overlay-message {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay-message__background {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.overlay-message__content {
+    background-color: rgba(255, 251, 251, 1);
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+}
+
+@media (min-width: 768px) {
+    .overlay-message__content {
+        left: calc(50% - 20rem);
+        width: 40rem;
+    }
+}
