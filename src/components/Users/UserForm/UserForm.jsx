@@ -16,7 +16,7 @@ function UserForm(props) {
             const currentAge = state.age;
             const currentUserName = state.userName.trim();
             if ((currentUserName.length > 0) && (currentAge >= 18 && currentAge <= 80)) {
-                state.id = Math.random().toString()
+                state.id = "user-"+Math.random().toString()
                 onNewUserAdded(state)
                 setState({userName: "", age: 0, id: 0})
             } else {
