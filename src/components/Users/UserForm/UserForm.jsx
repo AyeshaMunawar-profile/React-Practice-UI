@@ -4,7 +4,7 @@ import classes from "./UserForm.module.css"
 import Card from "../../Containers/Card/Card";
 
 function UserForm(props) {
-    const {onNewUserAdded} = props;
+    const {onNewUserAdded, setAlertContent, showAlert} = props;
     const [state, setState] = useState({userName: "", age: 0, id: 0})
     const handleOnChange = (event) => {
         let {value, name} = event.target;
@@ -24,12 +24,41 @@ function UserForm(props) {
                 setState({userName: "", age: 0, id: 0})
             } else {
                 if (currentAge < 18) {
+                    const alertContent = {
+                        heading: "Wrong Age",
+                        message: "Age cannot be less than 18 years",
+                        action: "Try again"
+                    };
+                    setAlertContent(alertContent);
+                    showAlert(true)
                     console.log("Age must be greater than or equal to 18")
                 } else if (currentAge > 80) {
+                    const alertContent = {
+                        heading: "Wrong Age",
+                        message: "Age cannot be greater than 80 years",
+                        action: "Try again"
+                    };
+                    setAlertContent(alertContent);
+                    showAlert(true)
                     console.log("Age must be less than or equal to 80")
                 } else if (currentUserName.length === 0) {
+                    const alertContent = {
+                        heading: "Invalid User Name",
+                        message: "User Name cannot be empty",
+                        action: "Try again"
+                    };
+                    setAlertContent(alertContent);
+                    showAlert(true)
                     console.log("Invalid UserName")
                 } else {
+                    const alertContent = {
+                        heading: "Oops!",
+                        message: "Something went wrong",
+                        action: "Try again"
+                    };
+                    setAlertContent(alertContent);
+                    showAlert(true)
+
                     console.log("Failed Submission!  Input validation failed")
                 }
             }
