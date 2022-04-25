@@ -11,3 +11,9 @@
     color: #CAF0F8;
     margin: 2rem 0rem;
 }
+.user-list__item{
+    list-style: none;
+}
+.user-list__item:not(:last-of-type){
+    margin-bottom: 2rem;
+}

@@ -7,19 +7,20 @@ function UserList(props) {
     const {userList} = props
     const getUserComponentsList = () => {
         return userList.map(user => {
-            return <User {...user} key={user.id}/>
+            return <li className={classes["user-list__item"]} key={user.id}><User {...user} /></li>
         })
     }
     const getEmptyUserListMessage = () => {
-        return <Card backgroundColor={"#03045E"}>
-            <h2 className={classes["user-list__error"]}>No Users in the list</h2>
-        </Card>
+        return (<Card backgroundColor={"#03045E"}>
+            <h2 className={classes["user-list__error"]}>No Users in the list</h2></Card>)
     }
     return (
         <Card backgroundColor={"#CAF0F8"} className={classes["user-list"]}>
             <div>
                 {userList.length > 0 ? <h1>Users List</h1> : ""}
-                {userList.length > 0 ? getUserComponentsList() : getEmptyUserListMessage()}
+                <ul>
+                    {userList.length > 0 ? getUserComponentsList() : getEmptyUserListMessage()}
+                </ul>
             </div>
         </Card>
     );
