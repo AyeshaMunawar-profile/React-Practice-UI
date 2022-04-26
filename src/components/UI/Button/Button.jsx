@@ -13,12 +13,10 @@ function Button(props) {
         }
     }
     return (
-        <div>
             <button
                 type={type}
                 className={`${className ? className : styles.button}`}
                 onClick={handleOnClick}>{children}</button>
-        </div>
     );
 }
 
