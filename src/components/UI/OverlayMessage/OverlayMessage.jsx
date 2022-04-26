@@ -11,7 +11,8 @@ function OverlayMessage(props) {
             <Card className={classes["overlay-message__content"]} backgroundColor={"#eee"}>
                 <h1>{heading}</h1>
                 <h2>{message}</h2>
-                <Button onClick={onClickHandler} type={"button"}>{buttonText}</Button>
+                <Button onClick={onClickHandler} type={"button"}
+                        className={`${classes["overlay-message__action"]} btn-blue`}>{buttonText}</Button>
             </Card>
             <div className={classes["overlay-message__background"]}/>
         </div>
