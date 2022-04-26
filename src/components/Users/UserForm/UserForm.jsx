@@ -70,31 +70,29 @@ function UserForm(props) {
     }
     return (
         <Card backgroundColor={"#CAF0F8"} className={`user-form ${classes.input}`}>
-            <div>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor={"username"}>User Name</label>
-                        <input name={"userName"}
-                               id={"username"}
-                               type={"text"}
-                               value={state.userName ? state.userName : ""}
-                               placeholder="Enter username"
-                               onChange={handleOnChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor={"age"}>Age</label>
-                        <input name={"age"}
-                               id={"age"}
-                               type={"number"}
-                               min={0}
-                               max={80}
-                               value={state.age ? state.age : 0}
-                               placeholder="Enter your age"
-                               onChange={handleOnChange}/>
-                    </div>
-                    <Button type={"submit"} onClick={handleOnUserAdded} className="btn-blue">Add User</Button>
-                </form>
-            </div>
+            <form>
+                <div className="form-group">
+                    <label htmlFor={"username"}>User Name</label>
+                    <input name={"userName"}
+                           id={"username"}
+                           type={"text"}
+                           value={state.userName ? state.userName : ""}
+                           placeholder="Enter username"
+                           onChange={handleOnChange}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor={"age"}>Age</label>
+                    <input name={"age"}
+                           id={"age"}
+                           type={"number"}
+                           min={0}
+                           max={80}
+                           value={state.age ? state.age : 0}
+                           placeholder="Enter your age"
+                           onChange={handleOnChange}/>
+                </div>
+                <Button type={"submit"} onClick={handleOnUserAdded} className="btn-blue">Add User</Button>
+            </form>
         </Card>
     );
 }
