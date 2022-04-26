@@ -31,9 +31,9 @@ class ErrorBoundary extends Component {
                 </Card>
             </>)
         } else {
-            return (<div>
+            return (<>
                 {this.props.children}
-            </div>)
+            </>)
         }
     }
 
