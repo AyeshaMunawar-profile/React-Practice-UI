@@ -13,7 +13,8 @@ function App() {
         setUsersList((previousList) => ([...previousList, userInfo]))
     }
     const hideOverlay = () => {
-        setIsOverlayVisible(false)
+        setIsOverlayVisible(false);
+        setOverlayContent({heading: "Opps!", message: "Something went wrong", action: "Okay"})
     }
     const showOverlay = () => {
         setIsOverlayVisible(true)
