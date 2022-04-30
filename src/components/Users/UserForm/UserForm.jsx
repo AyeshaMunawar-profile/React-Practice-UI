@@ -15,6 +15,9 @@ function UserForm(props) {
     }
     const handleOnUserAdded = (event) => {
         if (event && event.preventDefault) {
+            let errorHeading = "Oops!";
+            let errorMessage = "Something went wrong";
+            let errorAction = " Try Again"
             event.preventDefault();
             const currentAge = state.age;
             const currentUserName = state.userName.trim();
@@ -24,43 +27,33 @@ function UserForm(props) {
                 setState({userName: "", age: 0, id: 0})
             } else {
                 if (currentAge < 18) {
-                    const alertContent = {
-                        heading: "Wrong Age",
-                        message: "Age cannot be less than 18 years",
-                        action: "Try again"
-                    };
-                    setAlertContent(alertContent);
-                    showAlert(true)
+                    errorHeading = "Wrong age";
+                    errorMessage = "Age cannot be less than 18 years";
                     console.log("Age must be greater than or equal to 18")
                 } else if (currentAge > 80) {
-                    const alertContent = {
-                        heading: "Wrong Age",
-                        message: "Age cannot be greater than 80 years",
-                        action: "Try again"
-                    };
-                    setAlertContent(alertContent);
-                    showAlert(true)
+                    errorHeading = "Wrong Age";
+                    errorMessage = "Age must be less than or equal to 80";
                     console.log("Age must be less than or equal to 80")
-                } else if (currentUserName.length === 0) {
-                    const alertContent = {
-                        heading: "Invalid User Name",
-                        message: "User Name cannot be empty",
-                        action: "Try again"
-                    };
-                    setAlertContent(alertContent);
-                    showAlert(true)
-                    console.log("Invalid UserName")
-                } else {
-                    const alertContent = {
-                        heading: "Oops!",
-                        message: "Something went wrong",
-                        action: "Try again"
-                    };
-                    setAlertContent(alertContent);
-                    showAlert(true)
-
-                    console.log("Failed Submission!  Input validation failed")
                 }
+                if (currentUserName.length === 0) {
+                    errorHeading = `${
+                            errorHeading
+                        }`
+                        + ` \n Invalid User Name`;
+                    errorMessage = `${
+                            errorMessage
+                        }`
+                        + `\n User Name cannot be empty`;
+                    console.log("Invalid UserName - User Name cannot be empty")
+                }
+                const alertContent = {
+                    heading: errorHeading,
+                    message: errorMessage,
+                    action: errorAction
+                };
+                setAlertContent(alertContent);
+                showAlert(true);
+                console.log("Failed Submission!  Input validation failed")
             }
         } else {
             console.log("Add user event failed")
