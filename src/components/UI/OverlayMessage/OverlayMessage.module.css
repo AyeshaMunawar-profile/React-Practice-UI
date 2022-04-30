@@ -30,6 +30,7 @@
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: flex-start;
+    white-space: pre-line;
 }
 
 .overlay-message__action {

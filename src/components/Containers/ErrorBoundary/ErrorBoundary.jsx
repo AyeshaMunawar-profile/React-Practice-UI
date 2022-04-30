@@ -15,8 +15,8 @@ class ErrorBoundary extends Component {
         this.setState({error: true})
         console.error("Ooops! Something went wrong", error, errorInfo);
         const alertContent = {
-            heading: "Wrong Age",
-            message: "Age cannot be greater than 80 years",
+            heading: "Oops!",
+            message: "Something went wrong",
             action: "Try again"
         };
         setAlertContent(alertContent);
