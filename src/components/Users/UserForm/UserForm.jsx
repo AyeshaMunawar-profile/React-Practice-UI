@@ -1,41 +1,37 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import Button from "../../UI/Button/Button";
 import classes from "./UserForm.module.css"
 import Card from "../../Containers/Card/Card";
 
 function UserForm(props) {
+    const enteredName = useRef();
+    const enteredAge = useRef();
     const {onNewUserAdded, setAlertContent, showAlert} = props;
-    const [state, setState] = useState({userName: "", age: 0, id: 0})
-    const handleOnChange = (event) => {
-        let {value, name} = event.target;
-        if (name === 'age') {
-            value = Number(value).toString()
-        }
-        setState((previousState) => ({...previousState, [name]: value}))
-    }
+
     const handleOnUserAdded = (event) => {
         if (event && event.preventDefault) {
+            event.preventDefault();
+            const name = enteredName.current.value.toString().trim();
+            const age = Number(enteredAge.current.value).toString();
+            console.log(name, age)
             let errorHeading = "Oops!";
             let errorMessage = "Something went wrong";
             let errorAction = " Try Again"
-            event.preventDefault();
-            const currentAge = state.age;
-            const currentUserName = state.userName.trim();
-            if ((currentUserName.length > 0) && (currentAge >= 18 && currentAge <= 80)) {
-                state.id = "user-" + Math.random().toString()
-                onNewUserAdded(state)
-                setState({userName: "", age: 0, id: 0})
+            if ((name.length > 0) && (age >= 18 && age <= 80)) {
+                onNewUserAdded({userName: name, age, id: "user-" + Math.random().toString()});
+                enteredName.current.value = ""
+                enteredAge.current.value = ""
             } else {
-                if (currentAge < 18) {
+                if (age < 18) {
                     errorHeading = "Wrong age";
                     errorMessage = "Age cannot be less than 18 years";
                     console.log("Age must be greater than or equal to 18")
-                } else if (currentAge > 80) {
+                } else if (age > 80) {
                     errorHeading = "Wrong Age";
                     errorMessage = "Age must be less than or equal to 80";
                     console.log("Age must be less than or equal to 80")
                 }
-                if (currentUserName.length === 0) {
+                if (name.length === 0) {
                     errorHeading = `${
                             errorHeading
                         }`
@@ -69,9 +65,8 @@ function UserForm(props) {
                     <input name={"userName"}
                            id={"username"}
                            type={"text"}
-                           value={state.userName ? state.userName : ""}
                            placeholder="Enter username"
-                           onChange={handleOnChange}/>
+                           ref={enteredName}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor={"age"}>Age</label>
@@ -80,9 +75,8 @@ function UserForm(props) {
                            type={"number"}
                            min={0}
                            max={80}
-                           value={state.age ? state.age : 0}
                            placeholder="Enter your age"
-                           onChange={handleOnChange}/>
+                           ref={enteredAge}/>
                 </div>
                 <Button type={"submit"} onClick={handleOnUserAdded} className="btn-blue">Add User</Button>
             </form>
