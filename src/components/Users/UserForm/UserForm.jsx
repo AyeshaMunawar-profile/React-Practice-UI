@@ -22,7 +22,12 @@ function UserForm(props) {
                 enteredName.current.value = ""
                 enteredAge.current.value = ""
             } else {
-                if (age < 18) {
+                if(age === "0"){
+                    errorHeading = "Invalid Age";
+                    errorMessage = "Age cannot be empty";
+                    console.log("Age cannot be 0 or undefined")
+                }
+                else if (age < 18) {
                     errorHeading = "Wrong age";
                     errorMessage = "Age cannot be less than 18 years";
                     console.log("Age must be greater than or equal to 18")
